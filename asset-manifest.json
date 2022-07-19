@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/haiku/static/js/main.e5bc3cff.js",
+    "static/js/787.4df61fcb.chunk.js": "/haiku/static/js/787.4df61fcb.chunk.js",
+    "index.html": "/haiku/index.html",
+    "main.e5bc3cff.js.map": "/haiku/static/js/main.e5bc3cff.js.map",
+    "787.4df61fcb.chunk.js.map": "/haiku/static/js/787.4df61fcb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.e5bc3cff.js"
+  ]
+}
