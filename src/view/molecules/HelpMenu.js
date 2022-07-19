@@ -11,21 +11,19 @@ import AutorenewIcon from "@mui/icons-material/Autorenew";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import LanguageIcon from "@mui/icons-material/Language";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-import I18N, { t, LANG_LIST } from "../../nonview/base/I18N";
 import URLContext from "../../nonview/base/URLContext";
 
 const MENU_ITEM_LIST = [
   {
     name: "Code Repository",
-    url: "http://github.com/nuuuwan/politicians_lk",
+    url: "http://github.com/nuuuwan/haiku",
     Icon: GitHubIcon,
   },
   {
     name: "Report Bugs",
-    url: "https://github.com/nuuuwan/politicians_lk/issues",
+    url: "https://github.com/nuuuwan/haiku/issues",
     Icon: BugReportIcon,
   },
 ];
@@ -59,32 +57,6 @@ export default function HelpMenu() {
         </IconButton>
       </Box>
       <Menu anchorEl={anchorEl} open={open} onClose={onClose} onClick={onClose}>
-        {LANG_LIST.map(function (lang, iLang) {
-          const currentLang = I18N.getLang();
-          if (currentLang === lang.lang) {
-            return null;
-          }
-
-          const onClick = function () {
-            let context = URLContext.getContext();
-            context.lang = lang.lang;
-            URLContext.setContext(context);
-            window.location.reload(true);
-          };
-
-          return (
-            <MenuItem key={"lang-" + iLang} onClick={onClick}>
-              <ListItemIcon>
-                <LanguageIcon sx={{ color: lang.color }} />
-              </ListItemIcon>
-              <ListItemText sx={{ color: lang.color }}>
-                {lang.label}
-              </ListItemText>
-            </MenuItem>
-          );
-        })}
-
-        <Divider />
         {MENU_ITEM_LIST.map(function (menuItem, i) {
           const key = "app-bar-menu-item-" + i;
           const Icon = menuItem.Icon;
@@ -98,7 +70,7 @@ export default function HelpMenu() {
               <ListItemIcon>
                 <Icon />
               </ListItemIcon>
-              <ListItemText>{t(menuItem.name)}</ListItemText>
+              <ListItemText>{menuItem.name}</ListItemText>
             </MenuItem>
           );
         })}
@@ -107,13 +79,13 @@ export default function HelpMenu() {
           <ListItemIcon>
             <ContentCopyIcon />
           </ListItemIcon>
-          <ListItemText>{t("Copy App Link")}</ListItemText>
+          <ListItemText>{"Copy App Link"}</ListItemText>
         </MenuItem>
         <MenuItem onClick={onClickClearCache}>
           <ListItemIcon>
             <AutorenewIcon />
           </ListItemIcon>
-          <ListItemText>{t("Clear Local Cache")}</ListItemText>
+          <ListItemText>{"Clear Local Cache"}</ListItemText>
         </MenuItem>
       </Menu>
     </Box>
