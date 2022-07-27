@@ -1,15 +1,11 @@
-import { Component } from "react";
 import React from "react";
+import { Component } from "react";
 
 import Box from "@mui/material/Box";
 
 import URLContext from "../../nonview/base/URLContext";
 
-import HomePageBottomNavigation from "../../view/molecules/HomePageBottomNavigation";
 import HaikuEditor from "../../view/organisms/HaikuEditor";
-const STYLE_INNER_PAGE_BOX = {
-  marginTop: 2,
-};
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -54,10 +50,7 @@ export default class HomePage extends Component {
 
     return (
       <Box key={key}>
-        <Box sx={STYLE_INNER_PAGE_BOX}>
-          <HaikuEditor />
-        </Box>
-        <HomePageBottomNavigation />
+        <HaikuEditor />
       </Box>
     );
   }

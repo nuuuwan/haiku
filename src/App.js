@@ -32,7 +32,7 @@ const THEME = createTheme({
 const STYLE = {
   maxWidth: 800,
   margin: "auto",
-  marginBottom: 10,
+  marginBottom: 30,
 };
 
 export default class App extends Component {

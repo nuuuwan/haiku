@@ -1,13 +1,20 @@
 import { Component } from "react";
 
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+
 import Cache from "../../nonview/base/Cache";
-import HaikuLine from "../../view/molecules/HaikuLine"
+
+import HaikuLine from "../../view/molecules/HaikuLine";
+import HomePageBottomNavigation from "../../view/molecules/HomePageBottomNavigation";
 
 const CACHE_KEY = "cache.haiku_editor";
-
 const IGNORE_LIST = ["Shift", "Meta"];
+const DEFAULT_LINES = [""];
+
+const STYLE = {
+  marginTop: 2,
+};
 
 export default class HaikuEditor extends Component {
   constructor(props) {
@@ -19,7 +26,7 @@ export default class HaikuEditor extends Component {
 
   async componentDidMount() {
     const cache = new Cache(CACHE_KEY);
-    const lines = await cache.get(() => [""]);
+    const lines = await cache.get(() => DEFAULT_LINES);
     this.setLines(lines);
   }
 
@@ -33,7 +40,7 @@ export default class HaikuEditor extends Component {
     this.setState({ lines });
   }
 
-  handleKeyPress(e) {
+  async handleKeyPress(e) {
     let { lines } = this.state;
     if (!lines) {
       return null;
@@ -42,25 +49,35 @@ export default class HaikuEditor extends Component {
     const nLines = lines.length;
 
     const c = e.key;
-    if (c === "Enter") {
-      lines.push("");
-    } else if (c === "Backspace") {
-      lines[nLines - 1] = lines[nLines - 1].substring(
-        0,
-        lines[nLines - 1].length - 1
-      );
-    } else if (IGNORE_LIST.includes(c)) {
-      // Do nothing
-    } else {
-      lines[nLines - 1] += c;
-    }
 
-    if (lines[nLines - 1] === 'clear') {
-      localStorage.clear();
-      lines = [""];
+    if (e.metaKey) {
+      if (c === "v") {
+        if (navigator.clipboard.readText) {
+          const clipboardText = await navigator.clipboard.readText();
+          lines[nLines - 1] += clipboardText;
+        }
+      }
+    } else {
+      if (c === "Enter") {
+        lines.push("");
+      } else if (c === "Backspace") {
+        lines[nLines - 1] = lines[nLines - 1].substring(
+          0,
+          lines[nLines - 1].length - 1
+        );
+      } else if (IGNORE_LIST.includes(c)) {
+        // Do nothing
+      } else {
+        lines[nLines - 1] += c;
+      }
     }
 
     this.setLines(lines);
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
+  onClickClear() {
+    this.setLines(DEFAULT_LINES);
   }
 
   render() {
@@ -69,16 +86,25 @@ export default class HaikuEditor extends Component {
       return null;
     }
     return (
-      <Stack gap={2} direction="column">
-      {
-        lines.map(function (line, iLine) {
-          return (
-            <HaikuLine key={"line-" + iLine} line={line} />
-          );
-        })
-      }
-      </Stack>
-    )
-
+      <Box sx={STYLE}>
+        <Paper sx={{ p: 5 }}>
+          <table>
+            <tbody>
+              {lines.map(function (line, iLine) {
+                const isLastLine = iLine === lines.length - 1;
+                return (
+                  <HaikuLine
+                    key={"line-" + iLine}
+                    line={line}
+                    isLastLine={isLastLine}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        </Paper>
+        <HomePageBottomNavigation onClickClear={this.onClickClear.bind(this)} />
+      </Box>
+    );
   }
 }
