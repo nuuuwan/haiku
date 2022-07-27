@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/haiku/static/css/main.97d4a534.css",
-    "main.js": "/haiku/static/js/main.9bcbb3e8.js",
+    "main.js": "/haiku/static/js/main.7c05babb.js",
     "static/js/787.4df61fcb.chunk.js": "/haiku/static/js/787.4df61fcb.chunk.js",
     "index.html": "/haiku/index.html",
     "main.97d4a534.css.map": "/haiku/static/css/main.97d4a534.css.map",
-    "main.9bcbb3e8.js.map": "/haiku/static/js/main.9bcbb3e8.js.map",
+    "main.7c05babb.js.map": "/haiku/static/js/main.7c05babb.js.map",
     "787.4df61fcb.chunk.js.map": "/haiku/static/js/787.4df61fcb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.97d4a534.css",
-    "static/js/main.9bcbb3e8.js"
+    "static/js/main.7c05babb.js"
   ]
 }
