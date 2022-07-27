@@ -1,6 +1,4 @@
 export default class URLContext {
-
-
   static contextToStr(context) {
     return encodeURIComponent(btoa(JSON.stringify(context)));
   }
@@ -31,7 +29,6 @@ export default class URLContext {
     window.history.pushState("", "", url);
   }
 
-
   static setContext(context) {
     const url = URLContext.contextToURL(context);
     URLContext.setURL(url);
@@ -41,7 +38,4 @@ export default class URLContext {
     const url = URLContext.getURL();
     return URLContext.urlToContext(url);
   }
-
-
-
 }

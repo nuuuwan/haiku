@@ -9,9 +9,7 @@ export default function HomePageBottomNavigation() {
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
       elevation={3}
     >
-      <BottomNavigation>
-
-      </BottomNavigation>
+      <BottomNavigation></BottomNavigation>
     </Paper>
   );
 }

@@ -1,14 +1,14 @@
 import { Component } from "react";
-import React from 'react'
+import React from "react";
 
 import Box from "@mui/material/Box";
 
 import URLContext from "../../nonview/base/URLContext";
 
 import HomePageBottomNavigation from "../../view/molecules/HomePageBottomNavigation";
-
+import HaikuEditor from "../../view/organisms/HaikuEditor";
 const STYLE_INNER_PAGE_BOX = {
-  marginTop: 10,
+  marginTop: 2,
 };
 
 export default class HomePage extends Component {
@@ -48,7 +48,6 @@ export default class HomePage extends Component {
     this.setContext(context);
   }
 
-
   render() {
     const { context } = this.state;
     const key = JSON.stringify(context);
@@ -56,9 +55,9 @@ export default class HomePage extends Component {
     return (
       <Box key={key}>
         <Box sx={STYLE_INNER_PAGE_BOX}>
+          <HaikuEditor />
         </Box>
-        <HomePageBottomNavigation
-        />
+        <HomePageBottomNavigation />
       </Box>
     );
   }
